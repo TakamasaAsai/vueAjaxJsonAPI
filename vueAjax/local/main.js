@@ -22,7 +22,7 @@ var app = new Vue({
   // ライフサイクルハック
   created: function() {
     // JSONPのURL（サーバーに配置する）
-    var url = 'サーバーのURL/products.js';
+    var url = '../server/products.js';
     // 非同期通信でJSONPを読み込む
     $.ajax({
       url : url,                // 通信先URL
