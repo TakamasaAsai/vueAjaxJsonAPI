@@ -6,6 +6,8 @@ Vue.filter('number_format', function(val) {
 var app = new Vue({
   el: '#app',
   data: {
+    // 商品リスト
+    products:[],
     //「セール対象」のチェック状態（true：チェック有り、false：チェック無し）
     showSaleItem: false,
     //「送料無料」のチェック状態（true：チェック有り、false：チェック無し）
@@ -22,14 +24,14 @@ var app = new Vue({
   // ライフサイクルハック
   created: function() {
     // JSONPのURL（サーバーに配置する）
-    var url = '../server/products.js';
+    var url = 'http://localhost:8888/vueAjax/api/products.php';
     // 非同期通信でJSONPを読み込む
     $.ajax({
       url : url,                // 通信先URL
       type: 'GET',              // 使用するHTTPメソッド
-      dataType: 'jsonp',        // レスポンスのデータタイプ
-      jsonp: 'callback',        // クエリパラメータの名前
-      jsonpCallback: 'products' // コールバック関数の名前
+      dataType: 'json',        // レスポンスのデータタイプ
+      // jsonp: 'callback',        // クエリパラメータの名前
+      // jsonpCallback: 'products' // コールバック関数の名前
     })
     .done(function(data, textStatus, jqXHR) {
       this.products = data;
